@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-aria/angular-aria.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-material/angular-material.js"></script>
+		
+		<style>
+			.title {
+				text-align: center;
+			}
+			.card-media {
+				background-color: #eee;
+				border: 5px solid #ccc;
+			}
+			.site-preview {
+				background-color: #eee;
+				border: 5px solid #ccc;
+				margin-top: 8px;
+				margin-bottom: 6px;
+				/* min-height: 30em; */
+				/*margin: 8px 0px 6px 0px;*/
+			}
+		</style>
+
+		<script>
+
+			angular.module( 'app', [ 'ngMaterial'] )
+				.config(function($mdThemingProvider, $sceDelegateProvider) {
+					$mdThemingProvider.theme('big-data-theme')
+					      .primaryPalette('amber')
+					      .accentPalette('red')
+					      .warnPalette('light-green');
+					
+					$sceDelegateProvider.resourceUrlWhitelist([
+				        'http://galaxy.cineca.it/**'
+				    ]);					
+				})
+				.controller("controller", function($scope, $http, $mdDialog, $timeout){
+
+					self = this;
+					
+					$http.get('sites.json').then(function(response) {
+						$scope.sites = response.data;
+					});
+
+				}// End of controller
+			);
+
+		</script>
+	</head>
+	
+	<body style="margin: 0px; font-size: 1.2em;" ng-app="app" md-theme="big-data-theme">
+		<div ng-controller="controller as ctrl" layout="column" ng-cloak>
+		
+			<h1 class="title">Active projects</h1>
+		
+			<md-content class="md-padding" layout-xs="column" layout="column">
+				<div>
+					<div layout="row" layout-xs="column" ng-repeat="site in sites">
+						<md-card>
+							<md-card-title>
+							  <md-card-title-text>
+								<span class="md-headline">{{site.title}}</span>
+								<span class="md-subhead">Collaboratori: <span ng-repeat="person in site.collaborators">{{person}}{{$last ? '' : ', '}}</span></span>
+							  </md-card-title-text>
+							</md-card-title>
+							<md-card-content layout-xs="column" layout="row" layout-align="space-between">
+							  <a ng-href="{{site.url}}">
+							  	<img ng-src="{{site.image}}" class="md-card-image md-media-xl card-media">
+							  </a>
+							  <md-card-actions layout-xs="row" layout="column">
+								<md-button class="md-icon-button" ng-repeat="button in site.buttons" ng-href="{{button.url}}">
+								  <md-tooltip>{{button.description}}</md-tooltip>
+								  <md-icon>{{button.icon}}</md-icon>
+								</md-button>
+							  </md-card-actions>
+							</md-card-content>
+						  </md-card>
+						  
+						  <iframe flex="100%" class="site-preview" src="{{site.url}}"></iframe>
+					</div>
+				</div>
+			</md-content>
+		</div>
+	</body>
+</html>

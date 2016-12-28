@@ -1,0 +1,45 @@
+[{
+	"title": "Cow",
+	"collaborators": ["Stefano Di Biase", "Tiziano Flati"],
+	"image": "http://galaxy.cineca.it/cow/Logo2%20copia.jpg",
+	"url": "http://galaxy.cineca.it/cow",
+	"buttons": [{
+		"icon": "favorite"
+	}, {
+		"icon": "menu"
+	}, {
+		"icon": "open_in_new",
+		"url": "http://galaxy.cineca.it/cow",
+		"description": "Apre il sito di presentazione"
+	}, {
+		"icon": "insert_chart",
+		"url": "http://galaxy.cineca.it/dibiase/output-viewer/app/",
+		"description": "Apre il sito di ricerca"
+	}]
+}, {
+	"title": "Peach",
+	"collaborators": ["Ilario Tagliaferri"],
+	"image": "http://galaxy.cineca.it/peach/imgs/peaches-growing-in-tree-square.jpg",
+	"url": "http://galaxy.cineca.it/peach",
+	"buttons": [{
+		"icon": "favorite"
+	}, {
+		"icon": "menu"
+	}, {
+		"icon": "open_in_new",
+		"url": "http://galaxy.cineca.it/peach"
+	}]
+}, {
+	"title": "Fusion Catcher",
+	"collaborators": ["Andrea Micco"],
+	"image": "http://galaxy.cineca.it/micco/fusion-form/app/assets/logo.png",
+	"url": "http://galaxy.cineca.it/micco/fusion-form/app",
+	"buttons": [{
+		"icon": "favorite"
+	}, {
+		"icon": "menu"
+	}, {
+		"icon": "open_in_new",
+		"url": "http://galaxy.cineca.it/micco/fusion-form/app"
+	}]
+}]
